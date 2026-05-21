@@ -1,0 +1,67 @@
+{% extends "../components/dashboard_base.html" %}
+
+{% block title %}
+{{ profile.user.username }} Profile
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    {{ profile.user.username }}
+</h1>
+
+<br>
+
+{% if profile.profile_image %}
+
+    <img
+        src="{{ profile.profile_image.url }}"
+        width="150"
+    >
+
+{% endif %}
+
+<br><br>
+
+<p>
+    {{ profile.bio }}
+</p>
+
+<br>
+
+<p>
+    {{ profile.city }},
+    {{ profile.country }}
+</p>
+
+<br>
+
+{% if profile.allow_networking %}
+
+    {% if profile.linkedin_url %}
+        <p>
+            <a href="{{ profile.linkedin_url }}">
+                LinkedIn
+            </a>
+        </p>
+    {% endif %}
+
+    {% if profile.facebook_url %}
+        <p>
+            <a href="{{ profile.facebook_url }}">
+                Facebook
+            </a>
+        </p>
+    {% endif %}
+
+    {% if profile.instagram_url %}
+        <p>
+            <a href="{{ profile.instagram_url }}">
+                Instagram
+            </a>
+        </p>
+    {% endif %}
+
+{% endif %}
+
+{% endblock %}

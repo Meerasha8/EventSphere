@@ -1,0 +1,107 @@
+{% extends "../components/dashboard_base.html" %}
+
+{% block title %}
+{{ event.title }}
+{% endblock %}
+
+{% block content %}
+
+<h1>
+    {{ event.title }}
+</h1>
+
+{% if event.banner_image %}
+
+    <img
+        src="{{ event.banner_image.url }}"
+        width="500"
+    >
+
+{% endif %}
+
+<br><br>
+
+<p>
+    {{ event.description }}
+</p>
+
+<br>
+
+<p>
+    <strong>Category:</strong>
+    {{ event.category }}
+</p>
+
+<p>
+    <strong>Mode:</strong>
+    {{ event.mode }}
+</p>
+
+<p>
+    <strong>Venue:</strong>
+    {{ event.venue }}
+</p>
+
+<p>
+    <strong>City:</strong>
+    {{ event.city }}
+</p>
+
+<p>
+    <strong>Date:</strong>
+    {{ event.start_date }}
+</p>
+
+<p>
+    <strong>Time:</strong>
+    {{ event.start_time }}
+</p>
+
+<hr>
+
+<h2>Ticket Tiers</h2>
+
+{% for ticket in event.ticket_tiers.all %}
+
+    <div>
+
+        <h3>
+            {{ ticket.name }}
+        </h3>
+
+        <p>
+            Price: ₹{{ ticket.price }}
+        </p>
+
+        <p>
+            Available:
+            {{ ticket.capacity|add:"-"|add:ticket.sold_count }}
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <input
+                type="hidden"
+                name="ticket_id"
+                value="{{ ticket.id }}"
+            >
+
+            <button type="submit">
+                Register
+            </button>
+
+        </form>
+
+    </div>
+
+    <hr>
+
+{% empty %}
+
+    <p>No tickets available.</p>
+
+{% endfor %}
+
+{% endblock %}

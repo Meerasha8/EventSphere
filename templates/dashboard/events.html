@@ -1,0 +1,56 @@
+{% extends "../components/dashboard_base.html" %}
+
+{% block title %}
+Browse Events
+{% endblock %}
+
+{% block content %}
+
+<h1>Browse Events</h1>
+
+<p>Discover upcoming events.</p>
+
+<div>
+
+    {% for event in events %}
+
+        <div>
+
+            {% if event.banner_image %}
+                <img
+                    src="{{ event.banner_image.url }}"
+                    width="300"
+                >
+            {% endif %}
+
+            <h2>
+                <a href="{% url 'event_page' event.id %}">
+                    {{ event.title }}
+                </a>
+            </h2>
+
+            <p>
+                {{ event.category }}
+            </p>
+
+            <p>
+                {{ event.city }}
+            </p>
+
+            <p>
+                {{ event.start_date }}
+            </p>
+
+        </div>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No events available.</p>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

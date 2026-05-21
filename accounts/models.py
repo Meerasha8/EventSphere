@@ -53,7 +53,11 @@ class Profile(models.Model):
         blank=True
     )
 
-    website = models.URLField(
+    facebook_url = models.URLField(
+        blank=True
+    )
+
+    instagram_url = models.URLField(
         blank=True
     )
 
@@ -81,4 +85,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} Profile"
-

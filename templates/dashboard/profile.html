@@ -1,13 +1,154 @@
 {% extends "../components/dashboard_base.html" %}
 
 {% block title %}
-Dashboard Home
+My Profile
 {% endblock %}
 
 {% block content %}
 
-<h2>Welcome to Dashboard</h2>
+<h1>My Profile</h1>
 
-<p>This is dashboard home page.</p>
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <div>
+
+        {% if profile.profile_image %}
+            <img
+                src="{{ profile.profile_image.url }}"
+                width="150"
+            >
+        {% endif %}
+
+    </div>
+
+    <br>
+
+    <input
+        type="file"
+        name="profile_image"
+    >
+
+    <br><br>
+
+    <label>Bio</label>
+
+    <br>
+
+    <textarea
+        name="bio"
+        rows="5"
+        cols="50"
+    >{{ profile.bio }}</textarea>
+
+    <br><br>
+
+    <label>Phone Number</label>
+
+    <br>
+
+    <input
+        type="text"
+        name="phone_number"
+        value="{{ profile.phone_number }}"
+    >
+
+    <br><br>
+
+    <label>City</label>
+
+    <br>
+
+    <input
+        type="text"
+        name="city"
+        value="{{ profile.city }}"
+    >
+
+    <br><br>
+
+    <label>Country</label>
+
+    <br>
+
+    <input
+        type="text"
+        name="country"
+        value="{{ profile.country }}"
+    >
+
+    <br><br>
+
+    <label>LinkedIn URL</label>
+
+    <br>
+
+    <input
+        type="url"
+        name="linkedin_url"
+        value="{{ profile.linkedin_url }}"
+    >
+
+    <br><br>
+
+    <label>Facebook URL</label>
+
+    <br>
+
+    <input
+        type="url"
+        name="facebook_url"
+        value="{{ profile.facebook_url }}"
+    >
+
+    <br><br>
+
+    <label>Instagram URL</label>
+
+    <br>
+
+    <input
+        type="url"
+        name="instagram_url"
+        value="{{ profile.instagram_url }}"
+    >
+
+    <br><br>
+
+    <label>Organisation Name</label>
+
+    <br>
+
+    <input
+        type="text"
+        name="organisation_name"
+        value="{{ profile.organisation_name }}"
+    >
+
+    <br><br>
+
+    <label>
+
+        <input
+            type="checkbox"
+            name="allow_networking"
+
+            {% if profile.allow_networking %}
+                checked
+            {% endif %}
+        >
+
+        Allow Networking
+
+    </label>
+
+    <br><br>
+
+    <button type="submit">
+        Save Profile
+    </button>
+
+</form>
 
 {% endblock %}

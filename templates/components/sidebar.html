@@ -3,13 +3,18 @@
     <h2>Dashboard</h2>
 
     <ul>
-        <li><a href="/">Dashboard Home</a></li>
-        <li><a href="/events">Browse Events</a></li>
-        <li><a href="/my-events">My Events</a></li>
-        <li><a href="/tickets">My Tickets</a></li>
-        <li><a href="/create-event">Create Event</a></li>
-        <li><a href="/analytics">Analytics</a></li>
-        <li><a href="/settings">Settings</a></li>
+        <li><a href="{% url 'dashboard' %}">Dashboard Home</a></li>
+        {% if user.role == "organizer"%}
+
+
+        <li><a href="{% url 'my_events' %}">My Events</a></li>
+        <li><a href="{% url 'create_event' %}">Create Event</a></li>
+        {% else %}
+
+
+        {% endif %}
+        <li><a href="{% url 'events_page' %}">Browse Events</a></li>
+        <li><a href="{% url 'profile_page' %}">Profile</a></li>
     </ul>
 
 </aside>

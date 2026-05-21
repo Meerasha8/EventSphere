@@ -5,7 +5,9 @@ __pycache__/
 .worktodo.txt
 # C extensions
 *.so
-
+profile/
+event_banners/
+event_logos/
 # Distribution / packaging
 .Python
 build/
